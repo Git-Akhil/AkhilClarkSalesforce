@@ -1,0 +1,4 @@
+<aura:component >
+    <c:lastheading/>
+    <p>Hello Lighting!</p>
+</aura:component>

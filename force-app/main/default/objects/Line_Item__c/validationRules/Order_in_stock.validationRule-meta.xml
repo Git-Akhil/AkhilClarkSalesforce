@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order_in_stock</fullName>
+    <active>true</active>
+    <description>Not Available Stock</description>
+    <errorConditionFormula>IF(
+ISNEW(),
+Merchandise__r.Total_Inventory__c &lt; Units_Sold__c ,
+IF (
+Units_Sold__c &lt; PRIORVALUE(Units_Sold__c),
+FALSE,
+Merchandise__r.Total_Inventory__c &lt; (Units_Sold__c - PRIORVALUE(Units_Sold__c))
+)
+)</errorConditionFormula>
+    <errorDisplayField>Units_Sold__c</errorDisplayField>
+    <errorMessage>You have ordered more items than we have in stock</errorMessage>
+</ValidationRule>

@@ -1,0 +1,32 @@
+<apex:page standardController="Candidate__c" extensions="CandidateExtension">
+  <apex:sectionHeader title="Candidate" subtitle="{!candidate.Name}"/>
+  <apex:form >
+      <apex:pageblock >
+          <apex:pageblockSection title="Candidate Details" columns="2">
+              
+              <apex:inputField value="{!candidate.Name}"/>
+              <apex:inputField value="{!candidate.Age__c}"/>
+              <apex:inputField value="{!candidate.Email_Id__c}"/>
+              <apex:inputField value="{!candidate.Education__c}"/>
+              <apex:inputField value="{!candidate.First_Name__c}"/>
+              <apex:inputField value="{!candidate.Last_Name__c}"/>
+          </apex:pageblockSection>
+      
+          <apex:pageBlockSection title="Candidate Job Application" columns="1">
+              <apex:pageBlockTable value="{!JobApplicationWrapList}" var="JOBAPP">
+                  <apex:column headerValue="Action">
+                      <apex:inputCheckbox value="{!JOBAPP.checkBox}"/>
+                  </apex:column>
+                  <apex:column value="{!JOBAPP.JobApp.name}"/>
+                  <apex:column headerValue="Job Status">
+                      <apex:inputfield value="{!JOBAPP.JobApp.Job_status__c}"/>
+                  </apex:column>
+              </apex:pageBlockTable>
+          </apex:pageBlockSection>
+          <apex:pageBlockButtons >
+              <apex:commandButton value="Update" action="{!Updaterecord}"/>
+              <apex:commandButton value="Cancel" action="{!Cancel}"/>
+          </apex:pageBlockButtons>
+      </apex:pageblock>
+  </apex:form>
+</apex:page>

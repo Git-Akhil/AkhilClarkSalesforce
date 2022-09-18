@@ -1,0 +1,10 @@
+h1{
+    color:aquamarine;
+}
+.back-icon{
+    --sds-c-icon-color-foreground-default: #006dcc;
+}
+.slds-radio{
+    display : inline-block !important;
+    margin-right: 00.5rem;
+}

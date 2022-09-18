@@ -1,0 +1,35 @@
+<template>
+    <template if:true={isSpinner}>
+        <div class="spinner">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+    <template if:false={isResultAvilable}>
+        <div class="helloWorld">
+            <h1>Enter Numbers!</h1>
+            <div class="inputBlock">
+                <div class="slds-p-vertical_small">
+                    <lightning-input label="Number 1" value={number1} onchange={number1Change}
+                        placeholder="Enter Number 1"></lightning-input>
+                </div>
+                <div class="slds-p-vertical_small">
+                    <lightning-input label="Number 2" value={number2} onchange={number2Change}
+                        placeholder="Enter Number 2"></lightning-input>
+                </div>
+                <div class="slds-p-vertical_small">
+                    <lightning-button variant="brand" label="Sum" title="Primary action" onclick={handleSumClick} ></lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={isResultAvilable}>
+        <div class="sumOfNumber">
+            <h1>Your Sum is: {result}</h1>
+        </div>
+        <div>
+            <div class="slds-p-vertical_small">
+                <lightning-button variant="brand" label="Back" title="Back" onclick={handleBack}></lightning-button>
+            </div>
+        </div>
+    </template>
+</template>

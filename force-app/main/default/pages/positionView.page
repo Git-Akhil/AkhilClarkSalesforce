@@ -1,0 +1,32 @@
+<apex:page standardController="Position__c" >
+ <apex:form >
+  <apex:message />
+      <apex:pageBlock title="Position">{!Position__c.name}
+          <apex:pageblockSection columns="1" >
+              <apex:outputField value="{!Position__c.Start_Date__c}"/>
+              <apex:outputField value="{!Position__c.location__c}"/>
+              <apex:outputField value="{!Position__c.Job_Description__c}"/>
+              <apex:outputField value="{!Position__c.Hiring_Manager__c}"/>
+              <apex:outputField value="{!Position__c.Department__c}"/>
+             
+              <apex:outputField value="{!Position__c.Education_Requri__c}"/>
+             
+              <apex:outputField value="{!Position__c.Status__c}"/>
+              <apex:outputField value="{!Position__c.Sub_status__c}"/>
+              <apex:outputField value="{!Position__c.Programming_Language__c}"/>
+          </apex:pageblockSection>
+          <apex:pageBlocksection columns="1"  title="Job Applications" >
+              <apex:pageblockTable value="{!Position__c.Job_Applications__r}" var="JA">
+                  <apex:column value="{!JA.Name}"/>
+                  <apex:column headerValue="Job Status">
+                      <apex:outputField value="{!JA.Job_status__c}"/>
+                  </apex:column>
+              </apex:pageblockTable>
+          </apex:pageBlocksection>
+          <apex:pageblockButtons >
+              <apex:commandButton action="{!Edit}" value="Edit" />
+              <apex:commandButton action="{!Delete}" value="Delete"/>
+          </apex:pageblockButtons>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,398 @@
+<template>
+    
+    <template if:true={isSpinner}>
+        <div class='spinner'>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+    <div class='slds-theme_default'>
+        <div class='slds-p-around_large'>
+            <lightning-progress-indicator current-step={selectedStep}>
+                <lightning-progress-step label="1.Introduction" value="step1"></lightning-progress-step>
+                <lightning-progress-step label="Tax/IRS Questions" value="step2"></lightning-progress-step>
+                <lightning-progress-step label="Assets & Income" value="step3"></lightning-progress-step>
+                <lightning-progress-step label="Step Three" value="step4"></lightning-progress-step>
+            </lightning-progress-indicator>
+            <template if:true={isintroStep1}>
+                <div class="slds-m-top_large slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                    <h2 class="slds-m-top_x-large" style="color:grey;">"Hii, [{leadName}] this is [{ownerName}] with
+                        TaxRise, I'm calling to complete your application for tax relief. Is this a good time to speak?
+                    </h2>
+                </div>
+                <div class="slds-m-top_x-small slds-m-bottom_large slds-m-left_large slds-m-right_large">
+                    <lightning-button style="margin: 0%;" variant="brand" label="Yes" title="Yes"
+                        onclick={handleYesClick} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button variant="destructive" label="No" title="No" onclick={handleNoClick}
+                        class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </template>
+            <template if:true={isintroStep2}>
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backTostep1Handle}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                </div>
+                <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                    <h2 style="color:grey;font-size:14px">"Great! Before we get started, for your security, I need to
+                        get your account verified."</h2>
+                </div>
+                <div class="slds-m-top_x-small slds-m-bottom_large slds-m-left_large slds-m-right_large">
+                    <lightning-button style="margin: 0%;" variant="brand" label="Start Verification"
+                        title="Start Verification" onclick={handleVerifiedClick} class="slds-m-left_x-small">
+                    </lightning-button>
+                </div>
+            </template>
+            <template if:true={isintroStep3}>
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backTostep2Handle}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                    <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                        <h2 style="color:grey;font-size:14px">"I have the first six digit of your phone nubber as
+                            [{phonenoFirst6}], Can you verify the last 4 digits?"</h2>
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-col">
+                                <lightning-input class="inputlast4" type="number" name="phLast4"
+                                    label="Enter Clients Last 4 Digits" maxlength="4" value={last4input}
+                                    onchange={changeLast4} message-when-bad-input="No Match!"></lightning-input>
+                            </div>
+                            <div class="slds-col" style="line-height: 76px;">
+                                <lightning-button variant="brand" label="Submit" title="Submit"
+                                    onclick={handle4DigitClick} class="slds-m-left_x-small"></lightning-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={isintroStep4Success}>
+
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backToisIntroStep3}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                </div>
+
+                <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                    <h2 style="color: gray; font-size:14px">"Now We'll begin the tax and IRS questions portion of the
+                        interview. Let me start by
+                        introducing myself again. My Name is [{ownerName}], and I am a senior tax anylyst here with
+                        TexRise and my job is to get a complete understanding of your text issue to see what you
+                        qualify for. so I'm goimg to start by verifying some basic information about your tax
+                        issue."
+                    </h2>
+                </div>
+                <div class="slds-m-top_x-small slds-m-bottom_large slds-m-left_large slds-m-right_large">
+                    <lightning-button variant="brand" label="Start" title="Start" onclick={handleStep5StartClick}></lightning-button>
+                </div>
+            </template>
+
+            <template if:true={startStep5Process}>
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backToisintroStep4Success}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                </div>
+                <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                    <h2 style="color: gray; font-size:14px">"Please tell me which tax year you have not filed for, and if you owe money to the state or IRS." </h2>
+                </div>
+                <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                    <table class="slds-table slds-table_bordered slds-table_fixed-layout">
+                        <thead>
+                            <tr>
+                                <th >
+                                    <lightning-input type="checkbox" label="Year" onchange={handleHeadYearCheckbox}></lightning-input>
+                                    <!-- <lightning-icon icon-name="utility:arrowdown" alternative-text="arrowdown" title="arrowdown"></lightning-icon> -->
+                                </th>
+                                <th >
+                                    <lightning-input type="checkbox" label="Unfiled Status" onchange={handleHeadStatusCheckbox}>
+                                    </lightning-input>
+                                </th>
+                                <th >
+                                    <lightning-input type="checkbox" label="Unfiled IRS" onchange={handleHeadIRSCheckbox}>
+                                    </lightning-input>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={pickListYearWrapper} for:item="Obj" for:index="index">
+                                <tr key={Obj.year}>
+                                    <td>
+                                        <lightning-input type="checkbox" label={Obj.year} class={Obj.yIndex} name={Obj.year} onchange={handleRowYearCheckbox}>
+                                        </lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input  type="checkbox" class={Obj.stateIndex} name={Obj.year} onchange={handaleRowSingleCheckBocState}>
+                                        </lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input  type="checkbox"  class={Obj.IRSIndex} name={Obj.year} onchange={handaleRowSingleCheckBocState}>
+                                        </lightning-input>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+
+            <template if:true={isintroStep4Invalid}>
+                <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                    <h2 style="color:grey;font-size:14px">"Unfortunately the last four digits of the number you provided
+                        doesn't match our records. Would you like to try another way to get verified?"</h2>
+                    <lightning-button variant="brand" label="Alternative Verification Method"
+                        title="Alternative Verification Method" onclick={useAlternateMethod}></lightning-button>
+                    <template if:true={isAlternativeVerification}>
+                        <p class="slds-m-bottom_xx-small slds-m-top_medium">
+                            <span style="color: red;">*</span>
+                            <b style="margin-left: 0.5rem;">Alternative Methods</b>
+                        </p>
+                        <input class="slds-radio" type="radio" name="alternateMethod" value="SMS"
+                            onchange={selectMethod}>SMS
+                        <!-- <input class="slds-radio" type="radio" name="alternateMethod" value="SMS" onchange={selectMethod}>SMS2 -->
+                        <input class="slds-radio slds-m-left_medium" type="radio" name="alternateMethod" value="Email"
+                            onchange={selectMethod}>Email
+                        <input class="slds-radio slds-m-left_medium" type="radio" name="alternateMethod" value="Manager"
+                            onchange={selectMethod}>Manager Approval
+
+                        <template if:true={isSMS}>
+                            <h2 class="slds-m-bottom_medium slds-m-top_medium" style="color:grey;font-size:14px">"I'm
+                                going to send you a text message to thr phone number ending in [{phonenoLast4}] with a
+                                security code.Can you tell me ehat the code is?"</h2>
+                            <lightning-button variant="brand" class="smsButton" label="Send Code" title="Send Code"
+                                onclick={sendSMSCode}></lightning-button>
+                            <template if:true={isSendSMS}>
+                                <div class="slds-m-top_medium">
+                                    <iframe src={fullUrlsendSMS} frameborder="0"></iframe>
+                                </div>
+                            </template>
+                            <div class="slds-m-top_medium">
+                                <lightning-input style="width: 40%;display: inline-block;" type="number"
+                                    name="Enter Code" label="Enter Code" maxlength="4" onchange={smsCode}>
+                                </lightning-input>
+                                <lightning-button style="width: 30%;display: inline-block;" variant="brand"
+                                    label="Submit" title="Submit" class="slds-m-left_x-small" onclick={sendEailCode}>
+                                </lightning-button>
+                            </div>
+
+                        </template>
+
+                        <template if:true={isEmail}>
+                            <h2 class="slds-m-bottom_medium slds-m-top_medium" style="color:grey;font-size:14px">"I'm
+                                going to send you an email to [{clientEmail}] with a security code.Can you tell me ehat
+                                the code is?"</h2>
+                            <lightning-button variant="brand" class="emailButton" label="Send Code" title="Send Code"
+                                onclick={sendEnailCode}></lightning-button>
+                            <div class="slds-m-top_medium">
+                                <lightning-input style="width: 40%;display: inline-block;" type="number"
+                                    name="Enter Code" label="Enter Code" maxlength="4" onchange={emailcode}>
+                                </lightning-input>
+                                <lightning-button style="width: 30%;display: inline-block;" variant="brand"
+                                    label="Submit" title="Submit" class="slds-m-left_x-small" onclick={verifyEmailCode}>
+                                </lightning-button>
+                            </div>
+                        </template>
+
+                        <template if:true={isManager}>
+                            inside manager
+                            <h2 class="slds-m-bottom_medium slds-m-top_medium" style="color:grey;font-size:14px">"I'm
+                                going to get my manager to approve you,just a moment"</h2>
+                            <lightning-button variant="brand" class="managerButton" label="Send Approval"
+                                title="Send Approval" onclick={sendApprovalTomanager}></lightning-button>
+                            <lightning-button class="slds-m-left_medium" variant="brand" label="Continue"
+                                title="Continue" onclick={managerSuccess}></lightning-button>
+                        </template>
+
+
+                    </template>
+
+                </div>
+            </template>
+
+            <template if:true={isNostep1}>
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backToStep1}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                    <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                        <h2 style="color:grey;font-size:14px">"Would you like to reschedule our call at your next
+                            convenience?"</h2>
+                    </div>
+                    <div class="slds-m-top_x-small slds-m-bottom_large slds-m-left_large slds-m-right_large">
+                        <lightning-button style="margin: 0%;" variant="brand" label="Reschedule" title="Reschedule"
+                            onclick={handleWantToschedule} class="slds-m-left_x-small"></lightning-button>
+                        <lightning-button variant="destructive" label="Don't Reschedule" title="Don't Reschedule"
+                            onclick={handleNoToschedule} class="slds-m-left_x-small"></lightning-button>
+                    </div>
+                </div>
+            </template>
+            <template if:true={wantToschedule}>
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backToIsSchedule}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                    <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                        <h2 style="color:grey;font-size:14px">"Would you like me to send you a link where you can
+                            schedule an appointment at your own convenience? Or would you like to set a date right now
+                            on the phone to reconnect?"</h2>
+                    </div>
+                    <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                        <lightning-radio-group name="schedualeOption" label="" options={options} value={value}
+                            onchange={handleChange}></lightning-radio-group>
+                    </div>
+                    <template if:true={isSendEmail}>
+                        <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                            <h2 style="color:grey;font-size:14px">"Ok, i'm going to send you an email and text message
+                                with a link to schedule an appointment whenever it's easiet for you. I will speak with
+                                you then! I want to thank you for your time, and have a great day."</h2>
+                        </div>
+                        <div class="slds-m-top_x-small slds-m-bottom_large slds-m-left_large slds-m-right_large">
+                            <lightning-button style="margin: 0%;" variant="brand" label="Done" title="Done"
+                                onclick={handleSendEnailInfo} class="slds-m-left_x-small"></lightning-button>
+                        </div>
+                    </template>
+                    <template if:true={isManualSchedule}>
+                        <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                            <div class="slds-grid sl           ds-gutters">
+                                <div class="slds=col">
+                                    <lightning-input type="datetime" label="" onchange={changeScheduleDate}>
+                                    </lightning-input>
+                                </div>
+                                <div class="slds-col" style="line-height: 71px;">
+                                    <lightning-button variant="brand" label="Reschedule" title="Reschedule"
+                                        onclick={handleReschedule} class="slds-m-left_x-small"></lightning-button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <template if:true={doneReschedule}>
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backTowantToschedule}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                    <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                        <h2 style="color:grey;font-size:14px">"Great! l'll talk to you again then [{leadName}], I want
+                            to thank you for your time, and have a great day."</h2>
+                    </div>
+                    <div class="slds-m-top_x-small slds-m-bottom_large slds-m-left_large slds-m-right_large">
+                        <lightning-button style="margin: 0%;" variant="brand" label="Done" title="Done"
+                            onclick={closeAction} class="slds-m-left_x-small"></lightning-button>
+                    </div>
+                </div>
+            </template>
+            <template if:true={noToschedule}>
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backToIsSchedule}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                    <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                        <h2 style="color:grey;font-size:14px">"Do you still need help with your tax liability?"</h2>
+                    </div>
+                    <div class="slds-m-top_x-small slds-m-bottom_large slds-m-left_large slds-m-right_large">
+                        <lightning-button style="margin: 0%;" variant="brand" label="Yes" title="Yes"
+                            onclick={handleNeedHelp} class="slds-m-left_x-small"></lightning-button>
+                        <lightning-button variant="destructive" label="No" title="No" onclick={handleNoNeedHelp}
+                            class="slds-m-left_x-small"></lightning-button>
+                    </div>
+                </div>
+            </template>
+            <template if:true={isNeedHelp}>
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backToIsNeedHelp}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                    <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                        <h2 style="color:grey;font-size:14px">"Would you like me to send you an email information about
+                            our
+                            process here at TaxRise?"</h2>
+                    </div>
+                    <div class="slds-m-top_x-small slds-m-bottom_large slds-m-left_large slds-m-right_large">
+                        <lightning-button style="margin: 0%;" variant="brand" label="Yes" title="Yes"
+                            onclick={handleNeedEmail} class="slds-m-left_x-small"></lightning-button>
+                        <lightning-button variant="destructive" label="No" title="No" onclick={closeAction}
+                            class="slds-m-left_x-small"></lightning-button>
+                    </div>
+                </div>
+            </template>
+            <template if:true={isNeedEmail}>
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backToIsInfoNeed}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                    <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                        <h2 style="color:grey;font-size:14px">"Okay great, I just want to let you know that there will
+                            also be a link in the email where you can reschedule an appointment again at any time if you
+                            change your mind. i want to thank you for your time [{leadName}], and I hope you have a
+                            great day!"</h2>
+                    </div>
+                    <div class="slds-m-top_x-small slds-m-bottom_large slds-m-left_large slds-m-right_large">
+                        <lightning-button style="margin: 0%;" variant="brand" label="Done" title="Done"
+                            onclick={handleSendEnailInfo} class="slds-m-left_x-small"></lightning-button>
+                    </div>
+                </div>
+            </template>
+            <template if:true={iSNoNeedHelp}>
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backToIsNeedHelp}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                    <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                        <h2 style="color:grey;font-size:14px">"Are you working on resolving your tax liability in any
+                            way? Are you trying to resolve this on your own? Or are you working with another company?"
+                        </h2>
+                    </div>
+                    <div class="slds-m-top_x-small slds-m-bottom_large slds-m-left_large slds-m-right_large">
+                        <lightning-button style="margin: 0%;" variant="brand" label="Yes" title="Yes"
+                            onclick={handleOnOwn} class="slds-m-left_x-small"></lightning-button>
+                        <lightning-button variant="destructive" label="No" title="No" onclick={handleOnOwn}
+                            class="slds-m-left_x-small"></lightning-button>
+                    </div>
+                </div>
+            </template>
+            <template if:true={isNoOnOwn}>
+                <div class="slds-m-top_medium">
+                    <a style="font-size:15px;text-decoration: none;" onclick={backToIsOnOwn}>
+                        <lightning-icon icon-name="utility:back" class="back-icon" alternative-text="Previous Question"
+                            title="Previous Question" size="x-small"></lightning-icon>
+                        <span class="slds-m-left_medium">Previous Question</span>
+                    </a>
+                    <div class="slds-m-top_medium slds-m-left_large slds-m-right_large slds-m-bottom_x-small">
+                        <h2 style="color:grey;font-size:14px">"No problem, would you like us to put on a do not call
+                            list?"</h2>
+                    </div>
+                    <div class="slds-m-top_x-small slds-m-bottom_large slds-m-left_large slds-m-right_large">
+                        <lightning-button style="margin: 0%;" variant="brand" label="Yes" title="Yes"
+                            onclick={handleupdateDoNotCall} class="slds-m-left_x-small"></lightning-button>
+                        <lightning-button variant="destructive" label="No" title="No" onclick={closeAction}
+                            class="slds-m-left_x-small"></lightning-button>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

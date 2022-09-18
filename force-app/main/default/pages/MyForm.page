@@ -1,0 +1,22 @@
+<apex:page standardController="Account">
+  <apex:form >
+      <apex:pageBlock >
+      
+       <apex:pageMessage summary="This pageMessage will always display. Validation error messages appear in the pageMessages component." strength="3" severity="info"/>
+        <apex:pageMessages />
+      
+        <apex:pageBlockButtons location="Both">
+            <apex:commandButton action="{! Save}" value="Save"/>
+            <apex:commandButton action="{! quicksave}" value="Quick Save"/>
+            <apex:commandButton action="{! Cancel}" value="Cancel"/>
+        </apex:pageBlockButtons> 
+        <apex:pageMessages />
+         <apex:pageblockSection > 
+              <apex:inputField value="{!Account.name}"/>
+              <apex:inputfield value="{!Account.Industry}"/>
+              <apex:commandButton action="{! Save}" value="!Save!" />
+              <apex:commandButton action="{! quicksave}" value="!Quick Save!" />
+         </apex:pageblockSection>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

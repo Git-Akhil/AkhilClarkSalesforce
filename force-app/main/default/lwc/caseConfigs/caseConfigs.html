@@ -1,0 +1,43 @@
+<template>
+    <lightning-card  title="Case Configs">
+        <lightning-spinner variant="brand" alternative-text="Loading..." if:true={showSpinner}></lightning-spinner>
+        <div class="slds-table">
+            <div style="align-items: center;" class="slds-m-bottom_small slds-grid">
+                <div class="slds-m-horizontal_small">Select Record size:</div>
+                <div class="slds-size_1-of-7">
+                    <lightning-combobox
+                        name="object"
+                        variant="label-hidden"
+                        value={pagesize}
+                        placeholder="Record Size"
+                        options={getRecordSizeList}
+                        onchange={handleRecordSizeChange} >
+                    </lightning-combobox>
+                </div>
+            </div>
+            <div style="height: 180px;">
+                <lightning-datatable 
+                    data-id="datarow"
+                    key-field="id" 
+                    data={tabledata} 
+                    columns={column} 
+                    min-column-width="200" 
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </div>
+            <div class="slds-grid" style="justify-content: center;align-items: center;">
+                <div>
+                    <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={previousHandler} variant="base">
+                    </lightning-button>
+                </div>
+                <div class="slds-m-around_small">
+                    <lightning-layout-item flexibility="auto"> Page {page} of {totalPage} </lightning-layout-item>
+                </div>
+                <div>
+                    <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" variant="base" onclick={nextHandler}>
+                    </lightning-button>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

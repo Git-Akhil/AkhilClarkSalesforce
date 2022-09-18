@@ -1,0 +1,42 @@
+<apex:page standardController="Account " showHeader="false" sidebar="false" >
+    
+    <apex:pageBlock title="My Account Contact">
+        <apex:pageBlockTable value="{! Account.Contacts}" var="item" columns="3">
+            <apex:column value="{! item.Name}"/>
+            <apex:column value="{! item.phone}"/>
+            <apex:column value="{! item.MobilePhone}"/>
+        </apex:pageBlockTable>
+        <apex:outputLink value="https://developer.salesforce.com/">Click Me!</apex:outputLink>
+        <apex:dataList value="{! Account.Contacts}" var="Item2">
+            <apex:outputText value="{! Item2.name}"/>
+            <apex:outputText value="{! Item2.phone}"/>
+            <apex:outputText value="{! Item2.MobilePhone}"/>
+        </apex:dataList>
+        <ul>
+            <apex:repeat value="{!Account.Contacts}" var="Item3">
+            
+                 <li><apex:outputText value="{! Item3.name}"/></li>
+                 <li><apex:outputText value="{! Item3.phone}"/></li>
+                <li><apex:outputText value="{! Item3.MobilePhone}"/></li>           
+            
+             </apex:repeat>
+        </ul>
+    </apex:pageBlock>
+    
+     <apex:outputLink value="{! $Page.accountDisplay}"> I am me! </apex:outputLink>
+     <apex:outputLink value="{! URLFOR($Action.Account.new)}" >    Create New Account</apex:outputLink>
+     
+</apex:page>
+
+
+
+<!--<P> hello {! $user.Firstname}</p>
+    <P> you are viewing {! Position__c.Name} area </p>
+    <P> you are Viewing {! Position__c.Job_Description__c} </p>
+    <P> Here is the Hiring Manager of above position {! Position__c.location__c} </p>
+<apex:pageblock title="Custom Block ">
+        <apex:pageBlockSection title="Custom Section Title" columns="3">
+            <apex:outputField value="{! Position__c.Name}"/>
+            <apex:outputField value="{! Position__c.location__c}"/>
+        </apex:pageBlockSection>
+    </apex:pageblock>-->

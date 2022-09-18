@@ -1,0 +1,7 @@
+<apex:page standardController="Position__c" >
+<apex:pageBlock >
+<apex:pageblockSection columns="1">
+ <apex:detail />
+ </apex:pageblockSection>
+ </apex:pageBlock>
+</apex:page>

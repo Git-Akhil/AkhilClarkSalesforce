@@ -1,0 +1,66 @@
+<apex:page docType="html-5.0" showHeader="true" sidebar="false" standardStylesheets="true" >
+    <html>
+        <head>
+            <style>
+                #map {
+                width: 100%;
+                height: 600px;
+                }
+            </style>
+        </head>
+        
+        <body>
+            <div>
+                <!-----------------------------------Google Map---------------------------->
+                <div id="map">Loading map ...
+                    <script>
+                    
+                    renderMap = function (canvas, latitude, longitude) {
+                        var latLng = {lat: latitude, lng: longitude};
+                        console.log('----latLng-----',latLng);
+                        var map = new google.maps.Map(canvas, {
+                            center: latLng,
+                            zoom: 7
+                        });
+                        console.log('-----map-----',map);
+                        var marker = new google.maps.Marker({
+                            position: latLng,
+                            map: map,
+                            title: 'You Are Here'
+                        });
+                        console.log('-----marker-----',marker);
+                    }
+                    
+                    function initMap() {
+                        console.log('-----inside init map-----');
+                        var mapDiv = document.getElementById('map');
+                        
+                        console.log('---mapDiv----',mapDiv);
+                        
+                        if (navigator.geolocation) {
+                            console.log('-----inside init map if -----');
+                            navigator.geolocation.getCurrentPosition(
+                                function (position) {
+                                    console.log('-----inside init map if function(position)-----');
+                                    renderMap(mapDiv, position.coords.latitude, position.coords.longitude);
+                                },
+                                function(error) {
+                                    console.log('-----inside init map if function(error)-----');
+                                    document.getElementById('map').innerHTML = 'Error:' + error.code + ' x ' + error.message;
+                                }
+                            );
+                            
+                        } else {
+                            console.log('-----inside init map else -----');
+                            document.getElementById('map').innerHTML = 'Geolocation not supported';
+                        }
+                    }
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+                    </div>
+                    
+              </div>
+                                    
+         </body>
+       </html>
+</apex:page>

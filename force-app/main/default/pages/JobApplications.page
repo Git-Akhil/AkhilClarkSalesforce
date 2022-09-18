@@ -1,0 +1,34 @@
+<apex:page standardController="Job_Application__c" recordSetVar="JobApps"  tabStyle="NewJobApps__tab">
+  <apex:form >
+     <apex:pageBlock id="thePage">
+         <apex:actionRegion >
+             <apex:outputText value="Records par page: "></apex:outputText>
+             <apex:selectList value="{!Pagesize}" size="1">
+                 <apex:selectOption itemLabel="5" itemvalue="5"></apex:selectOption>
+                 <apex:selectOption itemLabel="10" itemvalue="10" ></apex:selectOption>
+                 <apex:selectOption itemlabel="15" itemvalue="15"></apex:selectOption>
+                 <apex:selectOption itemlabel="20" itemvalue="20"></apex:selectOption>
+                 <apex:actionSupport event="onclick" reRender="thePage,Navigation" status="jastatus"/>
+             </apex:selectList>
+             <apex:outputLabel value="View: " for="ViewList"></apex:outputLabel>
+             <apex:selectList id="ViewList" size="1" value="{!FilterId}">
+                 <apex:actionSupport event="Onchange" reRender="thePage,Navigation"/>
+                 <apex:selectOptions value="{!listviewOptions}"></apex:selectOptions>
+             </apex:selectList>
+         </apex:actionRegion>
+         <apex:pageBlockTable value="{!JobApps}" var="JA" id="CandidateTable">
+             <apex:column value="{!JA.Name}"/>
+             <apex:column value="{!JA.Candidate__c}"/>
+             <apex:column value="{!JA.Candidate__r.First_Name__c}"/>
+             <apex:column value="{!JA.Candidate__r.Last_Name__c}"/>
+             <apex:column value="{!JA.Position__r.Job_Description__c}"/>
+         </apex:pageBlockTable>
+         <apex:actionStatus id="jastatus" startText="Pending..." stopText="Done"></apex:actionStatus>
+     </apex:pageBlock>
+     <apex:panelGrid columns="3" id="Navigation" >
+         <apex:commandLink action="{!Previous}" reRender="{!hasPrevious}"> Previous </apex:commandLink>
+         <apex:commandLink action="{!Next}" reRender="{!hasNext}"> Next </apex:commandLink>
+     </apex:panelGrid>
+     
+  </apex:form>
+</apex:page>

@@ -1,0 +1,54 @@
+<apex:page standardController="Contact" recordSetVar="Contacts" sidebar="false" showHeader="false">
+  <apex:form >    
+      <apex:pageblock title="Contacts List" id="Contact_List">
+          filter:
+          <apex:selectList value="{! FilterId}" size="1">
+              <apex:selectOptions value="{! listviewOptions}"/>
+              <apex:actionSupport event="onchange" rerender="Contact_List"/>
+          </apex:selectList>
+      
+          <apex:pageBlockTable value="{! Contacts }" var="ct">
+              <apex:column value="{! ct.FirstName}"/>
+              <apex:column value="{! Ct.LastName}"/>
+              <apex:column value="{! Ct.Email}"/>
+              <apex:column value="{! Ct.Account.Name}"/>
+          </apex:pageBlockTable>
+          
+          <!-- Pagination -->
+          <table style="Width:100%">
+          <tr>
+              <td>
+                  <!-- page X of Y -->
+                  Page: <apex:outputText value="{!PageNumber}of{! CEILING(ResultSize/PageSize)}"/>
+              </td>
+              <td align="Center" >
+                  <!-- Previous Page -->
+                      <!-- Active -->
+                      <apex:commandLink action="{! Previous }" value="<< Previous" rendered="{! HasPrevious}"/>
+                      <!-- InActive -->
+                      <apex:outputText style="Color: #ccc" value="<< Previous" rendered="{! NOT(HasPrevious)}" />
+                  
+                  &nbsp;
+                  &nbsp;
+                  <!-- Next Page -->
+                      <!-- Active -->
+                      <apex:commandLink action="{! Next}" value="Next >>" rendered="{! HasNext}"/>
+                      <!-- InActive -->
+                      <apex:outputText style="Color: #ccc" value="Next >>" rendered="{! NOT(HasNext)}"/>
+                  
+              </td>
+               <td align="right">
+                  <!-- Records par Page -->
+                  Records par Page:
+                  <apex:selectList value="{! pagesize }" size="1">
+                      <apex:selectOption itemValue="5" itemLabel="5"/>
+                      <apex:selectOption itemValue="20" itemlabel="20"/> 
+                      <apex:actionSupport event="onchange" reRender="Contact_List"/>
+                  </apex:selectList>
+              </td>
+          </tr>
+          </table>
+          
+      </apex:pageblock>
+  </apex:form>
+</apex:page>

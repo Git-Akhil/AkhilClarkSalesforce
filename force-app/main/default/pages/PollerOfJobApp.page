@@ -1,0 +1,30 @@
+<apex:page standardController="Position__c" extensions="positionBarOfJobApplication">
+    <apex:pageBlock title="Position" >
+        <apex:pageBlockSection title="Position Details"> 
+            <apex:outputfield value="{!Position__c.name}"/> 
+            <apex:outputfield value="{!Position__c.location__c}"/>
+            <apex:outputfield value="{!Position__c.Hiring_Manager__c}"/>
+            <apex:outputfield value="{!Position__c.Job_Description__c}"/>
+            <apex:outputfield value="{!Position__c.Start_Date__c}"/>
+            <apex:outputfield value="{!Position__c.Number_of_application__c}"/>
+            <apex:outputfield value="{!Position__c.Department__c}"/>
+            <apex:outputfield value="{!Position__c.Total_Open_Pos__c}"/>
+            <apex:outputfield value="{!Position__c.Location_City_State_Country__c}"/>
+            <apex:outputfield value="{!Position__c.Total_Close_Pos__c}"/>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection title="Job Appliction Chart">
+            <apex:chart data="{!ListWrapper}" height="400" width="500">
+                <apex:legend position="left"> </apex:legend>  
+                <apex:pieSeries labelField="Openclose" dataField="count" donut="30" showInLegend="true"></apex:pieSeries>
+            </apex:chart>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>
+
+
+
+<!--apex:axis type="Numeric" position="left" title="Job Application" fields="Open,Close" grid="true" dashSize="3"></apex:axis>
+<apex:axis type="Category" position="bottom" title="Position Name" fields="PositionId" grid="true" >
+<apex:chartLabel rotate="270"/>
+</apex:axis-->
+<!--apex:pieSeries labelField="Close" dataField="Close" donut="30"></apex:pieSeries-->

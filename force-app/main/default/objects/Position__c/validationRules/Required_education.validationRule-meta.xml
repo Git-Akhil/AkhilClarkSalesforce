@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Required_education</fullName>
+    <active>false</active>
+    <description>specific requried education</description>
+    <errorConditionFormula>ISPICKVAL( Education_Requri__c , &quot;&quot;)</errorConditionFormula>
+    <errorDisplayField>Education_Requri__c</errorDisplayField>
+    <errorMessage>You must specify an educational requirement for this position</errorMessage>
+</ValidationRule>

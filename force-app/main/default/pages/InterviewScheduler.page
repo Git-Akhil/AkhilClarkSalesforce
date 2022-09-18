@@ -1,0 +1,18 @@
+<apex:page controller="customController">
+      <apex:sectionHeader title="Interview Scheduler" subtitle="Step 1 of 3 - Select Position"/>
+      <apex:form >
+          <apex:pageblock mode="edit" >
+              <apex:pageblockSection columns="1">
+                  <apex:pageBlockSectionItem >
+                      <apex:outputLabel value="select an open position" for="openPositionlist"></apex:outputLabel>
+                      <apex:selectList value="{!selectedPosition.id}" id="OpenPositionList" size="1">
+                          <apex:selectOptions value="{!OpenPositionList}"></apex:selectOptions>
+                      </apex:selectList>
+                  </apex:pageBlockSectionItem>
+              </apex:pageblockSection>
+              <apex:pageblockButtons location="bottom">
+                  <apex:commandButton value="Get Candidates" action="{!step2}"/>
+              </apex:pageblockButtons>
+          </apex:pageblock>
+      </apex:form>
+</apex:page>

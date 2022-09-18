@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction">
+	<aura:attribute name="recordId" type="string"></aura:attribute>
+    <c:getPickList recordId="{!v.recordId}"></c:getPickList>
+</aura:component>

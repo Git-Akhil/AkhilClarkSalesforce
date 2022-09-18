@@ -1,0 +1,16 @@
+<apex:page controller="customController">
+      <apex:sectionHeader title="Interview Scheduler" subtitle="Step 2 of 3 - Select Position"/>
+      <apex:form >
+          <apex:pageblock >
+              <apex:pageblockSection columns="1">
+                  <apex:selectRadio value="{!selectedjobApplication}" layout="pageDirection">
+                      <apex:selectOptions value="{!jobApplicationCandidates}"></apex:selectOptions>
+                      <apex:actionSupport event="onchange" reRender="buttons"/>
+                  </apex:selectRadio>
+              </apex:pageblockSection>
+              <apex:pageBlockSection id="buttons">
+                  <apex:commandButton value="Schedule Interviews" action="{!step3}" disabled="{!selectedjobApplication = NULL}"/>
+              </apex:pageBlockSection>
+          </apex:pageblock>
+      </apex:form>
+</apex:page>

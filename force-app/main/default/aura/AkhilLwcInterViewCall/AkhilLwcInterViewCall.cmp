@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:lightningQuickActionWithoutHeader">
+	<aura:attribute name="recordId" type="string"></aura:attribute>
+    <c:akhilLwcInterviewcallBundle recordId="{!v.recordId}" onclose="{!c.closeQA}" Source="Lead"></c:akhilLwcInterviewcallBundle>
+</aura:component>

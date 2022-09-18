@@ -1,0 +1,4 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:hasRecordId,flexipage:availableForRecordHome" >
+    <aura:attribute name="recordId" type="string"></aura:attribute>
+    <c:lwcInterviewCallBundle recordId="{!v.recordId}"/>
+</aura:component>

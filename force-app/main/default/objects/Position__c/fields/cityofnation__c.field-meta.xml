@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>cityofnation__c</fullName>
+    <externalId>false</externalId>
+    <label>cityofnation</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Nation_Picklist__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>lahor</fullName>
+                <default>false</default>
+                <label>lahor</label>
+            </value>
+            <value>
+                <fullName>delhi</fullName>
+                <default>false</default>
+                <label>delhi</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>India</controllingFieldValue>
+            <valueName>delhi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pakistan</controllingFieldValue>
+            <valueName>lahor</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

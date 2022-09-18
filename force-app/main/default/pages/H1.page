@@ -1,0 +1,9 @@
+<apex:page standardController="Account" sidebar="false" showHeader="false" standardStylesheets="false">
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Congratulations</h1>
+  <h1>My Style Page </h1>
+  <h5>Congratulations</h5>
+  <p>Deep Dobariya <br/> sc</p>
+  <body> my text </body>
+  <apex:stylesheet value="https://kriit3-dev-ed--c.visualforce.com/resource/1613639647000/style"/>
+</apex:page>

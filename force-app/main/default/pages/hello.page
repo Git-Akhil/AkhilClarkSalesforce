@@ -1,0 +1,25 @@
+<apex:page sidebar="false" showHeader="true" standardController="Account">    
+   {! $User.FirstName & ' ' & $User.LastName}
+   <p> Todays Date is {! Today()} </p>
+   <P> next week date is {! Today() + 7 } </p>
+   
+   <p> Today year is {! if(Year(Today()) < 2022, 2021 , 2023)} </p>
+   <p> Today day  is {! IF ( Day(Today()) < 19 , 'on the 18' , 'on or above 19')} </p>
+   <p> find max {! if ( Max(1,2,3,4,5,6,7,5) > 5 , 'more than 5 ', 'less than 5')} </P>
+   <p> true? {! if ( Contains('visualforce.com','fOrce.com') , "yeah" , "Nope" )} </p>
+   
+      <apex:pageblock title="A Block Title" >
+          
+          <apex:pageBlockSection title="A   Section Title" columns="2">I'm three components deep!</apex:pageBlockSection>
+          <apex:pageBlockSection title="B   Section Title" columns="2">I'm Four components deep!</apex:pageBlockSection>  
+          
+      </apex:pageblock>
+  
+</apex:page>
+
+<!--apex:form >
+      <h1>Hello World</h1>
+      <apex:pageBlockButtons > 
+                 <apex:commandButton action="{!save}" value="Save"></apex:commandButton>
+      </apex:pageBlockButtons>
+ </apex:form -->

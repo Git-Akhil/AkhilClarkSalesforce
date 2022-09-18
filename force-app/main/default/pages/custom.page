@@ -1,0 +1,5 @@
+<apex:page >
+  <c:boxedText borderWidth="30" Text="Akhil"/>
+  <c:boxedText BorderWidth="10" Text="Dobariya"></c:boxedText>
+  <c:boxedText BorderWidth="50" Text="AAAA"></c:boxedText>
+</apex:page>

@@ -1,0 +1,19 @@
+<apex:page >
+
+    <p>Today Date {! Today()}</P>
+    <p> Next Week Date {! Today()+7}</P>
+    <p> max = {! Max(1,2,3,4,5,2,5,2)}</P>
+    <p>sqrt of 49 {! Sqrt(49)}</P>
+    <p>Contains True? {! Contains('salesforce.com','Force.com')}</P>
+    <p>Contains True? {! if(Contains('salesforce.com','force.com'),"Yehh","Nope") }</P>
+    <p>today  15 {! if(day(Today()) < 15 , "yes","no")}</p>
+    <P>user {! if( $user.isActive,$user.username,"inActive")}</P>
+
+  <apex:pageblock title="user Status">
+     <apex:pageBlockSection title="User Details" columns="3">
+         <apex:PageBlockSectionItem >{! $user.FirstName}</apex:PageBlockSectionItem>
+          <apex:PageBlockSectionItem >{! $user.Lastname}</apex:PageBlockSectionItem>
+          <apex:PageBlockSectionItem >{! $user.UserName}</apex:PageBlockSectionItem>
+      </apex:pageBlockSection>
+  </apex:pageblock>
+</apex:page>

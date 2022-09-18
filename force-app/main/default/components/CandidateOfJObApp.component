@@ -1,0 +1,12 @@
+<apex:component controller="JobApplictionCompCont" id="MYCandidateComponent" >
+    <apex:attribute name="CandidateID" type="string" description="passing id to variable" assignto="{!assignCandidateID}"/>
+    <apex:pageBlock mode="maindetail" >
+        <apex:pageBlockTable value="{!CandidateRecord}" var="CandidateREC" > 
+            <apex:column value="{!CandidateREC.First_Name__c}" />
+            <apex:column value="{!CandidateREC.Last_Name__c}" />
+            <apex:column value="{!CandidateREC.Email_Id__c}" /> 
+            <apex:column value="{!CandidateREC.Education__c}" />
+            <apex:column value="{!CandidateREC.Age__c}" />
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:component>

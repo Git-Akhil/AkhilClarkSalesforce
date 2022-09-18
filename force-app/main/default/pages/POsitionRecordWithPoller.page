@@ -1,0 +1,30 @@
+<apex:page standardController="Position__c" recordSetVar="Position" extensions="positionBarOfJobApplication">
+    <apex:pageBlock title="Position" >
+        <apex:pageBlockTable value="{!Position}" var="Pos"> 
+            <apex:column headerValue="Position ID">
+                <apex:outputLink value="{!URLFOR($Action.Position__c.View,Pos.id)}"> {!Pos.name} </apex:outputLink>
+            </apex:column>
+            
+            <apex:column headerValue="Statistics">
+                <apex:outputLink value="{!URLFOR($Action.Position__c.Statistic,Pos.id)}"> {!Pos.name} </apex:outputLink>
+            </apex:column>
+            
+            <apex:column value="{!Pos.location__c}" />
+            <apex:column value="{!Pos.Job_Description__c}" />
+            <apex:column value="{!Pos.Department__c}" />
+            <apex:column value="{!Pos.Start_Date__c}" />
+        </apex:pageBlockTable>
+        <apex:pageBlockSection title="Job Application Chart" columns="1">
+            <apex:chart data="{!OpenCloseCount}" height="400" width="800">
+                <apex:legend position="left"></apex:legend>
+                <apex:axis type="Numeric" position="left" fields="OpenCount,CloseCount" grid="true" title="JobApp Count" >
+                    <apex:chartLabel />
+                </apex:axis>
+                <apex:axis type="Category" position="bottom" fields="PosName" grid="true" title="Position">
+                    <apex:chartLabel rotate="270" />
+                </apex:axis>
+                <apex:barSeries orientation="vertical" axis="left" stacked="false" xField="PosName" yField="OpenCount,CloseCount" title="Open Status,Close Status"></apex:barSeries>
+            </apex:chart>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

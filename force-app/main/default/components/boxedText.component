@@ -1,0 +1,7 @@
+<apex:component >
+  <apex:attribute name="text" description="the contant of the box" type="string" required="false"/>
+  <apex:attribute name="borderWidth" description="the width of border" type="integer" required="false"/>
+  <div style="border-color:red; border-style:ridge; border-width:{!borderWidth}px">
+      <apex:outputText value="{! text}"> </apex:outputText>
+  </div>
+</apex:component>

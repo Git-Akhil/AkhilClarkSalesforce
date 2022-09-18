@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Location_City_State_Country__c</fullName>
+    <description>Combine city,state,country</description>
+    <externalId>false</externalId>
+    <formula>location__r.City__c &amp; &apos;,  &apos; &amp; location__r.State_provi__c &amp; &apos; -  &apos; &amp; location__r.country__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>show ......................</inlineHelpText>
+    <label>Location City/State/Country</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

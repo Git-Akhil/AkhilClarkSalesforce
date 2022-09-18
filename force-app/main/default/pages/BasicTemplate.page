@@ -1,0 +1,8 @@
+<apex:page >
+  <apex:stylesheet value="https://kriit3-dev-ed--c.visualforce.com/resource/1613639647000/style"/>
+  <h1> My Fancy Site </h1>
+  <apex:insert name="Body">
+  <h1><br/>inside insert My Fancy Site </h1>
+  </apex:insert>
+  <h1><br/>after insert My Fancy Site </h1>
+</apex:page>

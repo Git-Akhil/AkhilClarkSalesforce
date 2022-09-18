@@ -1,0 +1,4 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:hasRecordId">
+<aura:attribute name="recordId" type="String"/>
+<c:first1 recordId="{!v.recordId}" onclose="{!c.closeQA}" source="Lead"></c:first1>
+</aura:component>

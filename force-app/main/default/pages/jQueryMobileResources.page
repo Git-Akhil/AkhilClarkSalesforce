@@ -1,0 +1,20 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false">
+  <apex:stylesheet value="{! URLFOR($Resource.jQueryMobile,'jquery.mobile-1.4.5.css')}"/>
+  
+  <apex:includeScript value="{! URLFOR($Resource.jQueryMobile,'jquery.mobile-1.4.5.js')}"/>
+  
+  <div style="Margin-Left:Auto,Margin-right:Auto,Width:50%">
+      <h3>Images</h3>
+      <P> A hidden Message:
+      &nbsp; 
+          <apex:image alt="eye" title="eye" url="{! URLFOR($resource.jQueryMobile,'images/icons-png/eye-black.png')}"/> 
+          &nbsp;     
+          <apex:image alt="heart" title="heart" url="{! URLFOR($resource.jQueryMobile,'images/icons-png/heart-black.png')}"/>
+          &nbsp; 
+          <apex:image alt="Cloud" title="cloud" url="{!URLFOR($Resource.jQueryMobile,'images/icons-png/cloud-black.png')}"/>
+      </p>
+      <h3>Background Images on Buttons</h3>
+      <button class="ui-btn ui-overlay-shadow ui-corner-all ui-btn-icon-right ui-icon-action ">action</button>
+      <button class="ui-btn ui-overlay-shadow ui-corner-all ui-btn-icon-right ui-icon-star">star</button>
+  </div>
+</apex:page>

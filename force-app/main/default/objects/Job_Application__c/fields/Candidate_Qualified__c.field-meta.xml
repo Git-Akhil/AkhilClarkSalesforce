@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Candidate_Qualified__c</fullName>
+    <description>shows qualification yes Or no</description>
+    <externalId>false</externalId>
+    <formula>IF
+(
+CASE(  Position__r.Education_Requri__c  ,
+ 
+&quot;High School&quot;, 1,
+&quot;College&quot;, 2, 
+&quot;Masters&quot;, 3,
+&quot;PhD&quot;, 4,
+&quot;Post-doc&quot;, 5,0)
+
+
+&gt;
+
+
+CASE(  Candidate__r.Education__c  ,  
+&quot;High School&quot;, 1,
+&quot;College&quot;,2, 
+&quot;Masters&quot;, 3,
+&quot;PhD&quot;, 4,
+&quot;Post-doc&quot;, 5, 0), 
+
+
+&quot;Not Qualified&quot;, &quot;Qualified&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>..................................................</inlineHelpText>
+    <label>Candidate Qualified</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

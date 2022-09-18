@@ -1,0 +1,28 @@
+<apex:page standardController="Candidate__c" extensions="CandidateViewExtension">
+ <apex:form >
+  <apex:message />
+      <apex:pageBlock title="Candidate">{!candidateObj.name}
+          <apex:pageblockSection columns="2" >
+              <apex:outputField value="{!candidateObj.Name}"/>
+              <apex:outputField value="{!candidateObj.Age__c}"/>
+              <apex:outputField value="{!candidateObj.Education__c}"/>
+              <apex:outputField value="{!candidateObj.Email_Id__c}"/>
+              <apex:outputField value="{!candidateObj.First_Name__c}"/>
+             
+              <apex:outputField value="{!candidateObj.Last_Name__c}"/>
+          </apex:pageblockSection>
+          <apex:pageBlocksection columns="1"  title="Job Applications" >
+              <apex:pageblockTable value="{!candidateWrapperlist }" var="JA">
+                  <apex:column value="{!JA.JobAppObj.Name}"/>
+                  <apex:column headerValue="Job Status">
+                      <apex:outputField value="{!JA.JobAppObj.Job_status__c}"/>
+                  </apex:column>
+              </apex:pageblockTable>
+          </apex:pageBlocksection>
+          <apex:pageblockButtons >
+              <apex:commandButton action="{!Edit}" value="Edit" />
+              <apex:commandButton action="{!Delete}" value="Delete"/>
+          </apex:pageblockButtons>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

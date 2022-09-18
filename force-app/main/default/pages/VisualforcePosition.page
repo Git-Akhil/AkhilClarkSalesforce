@@ -1,0 +1,31 @@
+<apex:page standardController="Position__c" id="ThePage">
+    
+  <apex:form >
+      <apex:pageblock title="Inputfield">
+          <apex:messages />
+         <apex:pageBlockButtons location="Bottom">
+             <Apex:commandButton action="{! save}" value="Save"/>
+             <apex:commandButton action="{!Cancel}" value="Cancel"/>
+         </apex:pageBlockButtons>
+        
+          <apex:pageblocksection title="section A" columns="1">
+              <apex:inputfield value="{!Position__c.Department__c}" />
+              <apex:inputfield value="{!Position__c.Job_Description__c}"/>
+          </apex:pageblocksection>
+           <apex:outputText value="These are the Candidate For Position" styleClass="Candidate"></apex:outputText>
+          <apex:pageBlockTable value="{!Position__c.Job_Applications__r  }" var="JA"> 
+              <apex:column headerValue="Candidates">
+                  {!JA.Candidate__r.First_Name__c}{!JA.Candidate__r.Last_Name__c}
+                  <apex:actionSupport event="onmousemove" reRender="ThePage:candidateDetail" status="status">
+                      <apex:param name="Candidate" value="{!JA.Candidate__r.ID}"/>
+                  </apex:actionSupport>
+              </apex:column>
+              <Apex:column value="{!JA.Candidate_Qualified__c}"/>
+          </apex:pageBlockTable>
+          <apex:actionStatus startText="Fetching Details......" stopText="Bellow"></apex:actionStatus>
+      </apex:pageblock>
+  </apex:form>
+  <apex:outputPanel id="candidateDetail" styleClass="Candidate">
+      <apex:detail subject="{!$CurrentPage.parameters.Candidate}" title="false" relatedList="false" />
+  </apex:outputPanel>
+</apex:page>

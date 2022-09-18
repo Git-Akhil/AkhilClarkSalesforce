@@ -1,0 +1,40 @@
+<apex:page standardController="Position__c" extensions="Mytab">
+    <apex:form >
+        <apex:pageBlock title="Position Details" mode="inlineEdit" >
+            <apex:pageBlockSection >
+                <apex:outputfield value="{!Position__c.name}"/> 
+                <apex:outputfield value="{!Position__c.location__c}"/>
+                <apex:outputfield value="{!Position__c.Hiring_Manager__c}"/>
+                <apex:outputfield value="{!Position__c.Job_Description__c}"/>
+                <apex:outputfield value="{!Position__c.Start_Date__c}"/>
+                <apex:outputfield value="{!Position__c.Number_of_application__c}"/>
+                <apex:outputfield value="{!Position__c.Department__c}"/>
+                <apex:outputfield value="{!Position__c.Total_Open_Pos__c}"/>
+                <apex:outputfield value="{!Position__c.Location_City_State_Country__c}"/>
+                <apex:outputfield value="{!Position__c.Total_Close_Pos__c}"/>
+            </apex:pageBlockSection>
+            <!--apex:pageBlockTable value="{!Position__c.Job_Applications__r}" var="JOB">
+                <apex:column value="{!JOB.Candidate__r.First_Name__c}" />
+                <apex:column value="{!JOB.Candidate__r.Last_Name__c}" />
+                <apex:column value="{!JOB.name}" />
+            </apex:pageBlockTable>
+            <apex:pageBlockSection title="Job Applications">
+<apex:pageBlockTable value="{!Position__c.Job_Applications__r}" var="JobApp">
+<apex:column value="{!JobApp.name}" />
+</apex:pageBlockTable>
+</apex:pageBlockSection-->
+            <apex:tabPanel >
+                <apex:repeat value="{!jobappName}" var="var">
+                    <apex:tab label="{!var.name}">
+                    <apex:outputText >{!var.name}</apex:outputText>
+                    </apex:tab>
+                    
+                </apex:repeat>     
+            </apex:tabPanel>
+            <!--apex:dynamicComponent componentValue="{!myTabsJOb}"></apex:dynamicComponent-->
+            <c:JobApplicationComponent PositionID="{!Position__c.ID}"></c:JobApplicationComponent>
+        </apex:pageBlock>
+        
+        
+    </apex:form>
+</apex:page>

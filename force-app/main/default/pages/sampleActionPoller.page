@@ -1,0 +1,15 @@
+<apex:page controller="examplecontroller2">
+    <apex:pageBlock >
+     <apex:pageBlockSection title="chart" columns="2">
+  <apex:Chart data="{!data}" height="400" width="800">
+      <apex:legend position="left"></apex:legend>
+      <apex:pieSeries labelField="name" dataField="data1" donut="50" ></apex:pieSeries>
+  </apex:Chart>
+  <apex:Chart data="{!data}" height="400" width="300">
+      
+      <apex:legend position="left"></apex:legend>
+      <apex:pieSeries labelField="name" dataField="data1" donut="50" ></apex:pieSeries>
+  </apex:Chart>
+  </apex:pageBlockSection>
+  </apex:pageBlock>
+</apex:page>

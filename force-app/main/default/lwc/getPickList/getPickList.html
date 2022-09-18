@@ -1,0 +1,39 @@
+<template>
+    
+    <table class="slds-table slds-table_bordered slds-table_fixed-layout">
+        <thead>
+            <tr>
+                <th >
+                    <lightning-input type="checkbox" label="Year" onchange={handleHeadYearCheckbox}></lightning-input>
+                    <!-- <lightning-icon icon-name="utility:arrowdown" alternative-text="arrowdown" title="arrowdown"></lightning-icon> -->
+                </th>
+                <th >
+                    <lightning-input type="checkbox" label="Unfiled Status" onchange={handleHeadStatusCheckbox}>
+                    </lightning-input>
+                </th>
+                <th >
+                    <lightning-input type="checkbox" label="Unfiled IRS" onchange={handleHeadIRSCheckbox}>
+                    </lightning-input>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={pickListYearWrapper} for:item="Obj" for:index="index">
+                <tr key={Obj.year}>
+                    <td>
+                        <lightning-input type="checkbox" label={Obj.year} class={Obj.yIndex} name={Obj.year} onchange={handleRowYearCheckbox}>
+                        </lightning-input>
+                    </td>
+                    <td>
+                        <lightning-input  type="checkbox" class={Obj.stateIndex} name={Obj.year} onchange={handaleRowSingleCheckBocState}>
+                        </lightning-input>
+                    </td>
+                    <td>
+                        <lightning-input  type="checkbox"  class={Obj.IRSIndex} name={Obj.year} onchange={handaleRowSingleCheckBocState}>
+                        </lightning-input>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</template>

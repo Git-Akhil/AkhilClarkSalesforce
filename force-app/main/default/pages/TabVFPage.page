@@ -1,0 +1,38 @@
+<apex:page controller="TabEXample">
+    <apex:form >
+        <h1>
+            {!selectedTab}
+        </h1>
+        <apex:tabPanel switchType="client" value="{!selectedTab}" id="theTabPanel"> 
+            <apex:tab label="step1: " name="One" id="TabOne" ontabenter="callclass1('one');" >
+                <apex:repeat value="{!acc}" var="a">
+                    <apex:outputText >{!a.name}</apex:outputText>
+                </apex:repeat></apex:tab>
+            <apex:tab label="step2: " name="Two" id="TabTwo" ontabenter="callclass2('two');">
+                <apex:repeat value="{!Conid}" var="c">
+                    <apex:outputText >{!c.id}</apex:outputText>
+                </apex:repeat></apex:tab>
+            
+            <apex:tab label="step3: " name="Three" id="TabThree" ontabenter="callclass3('Three');">
+                <apex:repeat value="{!Con}" var="c">
+                    <apex:outputpanel id="OutputPanel3" >{!c.name}</apex:outputpanel>
+                </apex:repeat></apex:tab>
+        </apex:tabPanel>
+        <apex:outputPanel id="Panelid" >
+        <h1>
+            {!selectedTab}
+        </h1>
+        </apex:outputPanel>
+        
+        
+        <apex:actionFunction name="callclass1" reRender="theTabPanel,Panelid" action="{!method1}">
+            <apex:param name="p1" value="" assignTo="{!selectedTab}" />
+        </apex:actionFunction>
+        <apex:actionFunction name="callclass2" reRender="theTabPanel,Panelid" action="{!method2}">
+            <apex:param name="p2" value="" assignTo="{!selectedTab}" />
+        </apex:actionFunction>
+        <apex:actionFunction name="callclass3" reRender="theTabPanel,Panelid" action="{!method3}">
+            <apex:param name="p3" value="" assignTo="{!selectedTab}" />
+        </apex:actionFunction>
+    </apex:form>
+</apex:page>

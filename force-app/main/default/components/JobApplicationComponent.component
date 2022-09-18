@@ -1,0 +1,18 @@
+<apex:component controller="JobApplictionCompCont" id="MYJobAppComponent" >
+    <apex:attribute name="PositionID" type="string" description="passing id to variable" assignto="{!assignPositionID}"/>
+    
+    <apex:repeat value="{!JobApplicationRecord}" var="JOBREC">
+        <apex:pageBlockSection title="{!JOBREC.Name}">
+            <apex:outputField value="{!JOBREC.name}"/>
+            <apex:outputField value="{!JOBREC.Candidate_Qualified__c}"/>
+            <apex:outputField value="{!JOBREC.Job_status__c}"/>
+            <apex:outputField value="{!JOBREC.count_of_app__c}"/>
+            <apex:outputField value="{!JOBREC.Candidate__c}"></apex:outputField>
+            <apex:pageBlockSection title="{!JOBREC.Candidate__r.Name} Details" columns="1"  > 
+                <c:CandidateOfJObApp CandidateID="{!JOBREC.Candidate__r.ID}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlockSection>
+        
+    </apex:repeat>
+    
+</apex:component>

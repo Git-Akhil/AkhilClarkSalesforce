@@ -1,0 +1,5 @@
+<apex:page showHeader="false" sidebar="false">
+<apex:pageblock title="salesforce Logo">
+  <apex:image id="ImageDisplay" value="{! IMAGEPROXYURL('https://developer.salesforce.com/files/salesforce-developer-network-logo.png')}" height="100" width="300" alt="SalesForce logo"/>
+</apex:pageblock>
+</apex:page>

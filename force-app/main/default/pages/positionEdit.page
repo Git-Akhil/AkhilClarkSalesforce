@@ -1,0 +1,40 @@
+<apex:page standardController="Position__c"  extensions="positioncon" >
+  <apex:form >
+  <apex:message />
+      <apex:pageBlock title="Edit Position" >
+          
+          <apex:pageBlockSection columns="2" title="Position details"  id="PBSEC1">
+              {!forpagesec1}
+              <apex:inputField value="{!pos.Start_Date__c}"/>
+              <apex:inputField value="{!pos.location__c}"/>
+              <apex:inputField value="{!pos.Job_Description__c}"/>
+              <apex:inputField value="{!pos.Hiring_Manager__c}"/>
+              <apex:inputField value="{!pos.Department__c}"/>
+              &nbsp;
+              <apex:inputField value="{!pos.Education_Requri__c}"/>
+              &nbsp;
+              <apex:inputField value="{!pos.Status__c}"/>
+              <apex:inputField value="{!pos.Sub_status__c}"/>
+              <apex:inputField value="{!pos.Programming_Language__c}" rendered="{!Rendervalue}"/> 
+          </apex:pageBlockSection>
+          
+          <apex:pageBlocksection columns="1"  title="Edit Job App record" id="PBSEC2">
+              <apex:pageblockTable value="{!jobWrapperList}" var="JA" >
+                  <apex:column headerValue="checkbox">
+                      <apex:inputCheckbox value="{!JA.isselected}"/>
+                  </apex:column>
+                  <apex:column value="{!JA.JobApplicationObject.Name}"/>
+                  <apex:column headervalue="Job Status">
+                      <apex:inputfield value="{!JA.JobApplicationObject.Job_status__c}"/>
+                  </apex:column>
+              </apex:pageblockTable>
+          </apex:pageBlocksection>
+          
+          <apex:pageblockButtons >
+              <apex:commandButton action="{!saverecord}" value="Update"  reRender="PBSEC1,PBSEC2"/>
+              <apex:commandButton action="{!Cancel}" value="Cancel"  />
+          </apex:pageblockButtons>
+          
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

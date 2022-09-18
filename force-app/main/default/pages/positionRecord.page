@@ -1,0 +1,21 @@
+<apex:page standardController="Position__c" recordSetVar="Position" >
+  <apex:form >
+      <apex:pageblock >
+          <apex:pageblockTable value="{!Position}" var="Positions"> 
+             <apex:column headerValue="Position ID"> 
+                 <apex:outputLink value="{! URLFOR($Action.Position__c.view,Positions.id)}">{!Positions.name}</apex:outputLink>
+             </apex:column>
+             <apex:column value="{!Positions.location__c}"/>
+             <apex:column value="{!Positions.Job_Description__c}"/>
+             <apex:column value="{!Positions.Department__c}"/>
+             <apex:column headerValue="Max Job Application" value="{!Positions.Max_Job_Application__c}"></apex:column>
+          </apex:pageblockTable>
+          <apex:pageblockSection columns="1">
+              <apex:pageblockTable value="{!Position__c.Job_Applications__r}" var="PositionJOb"> 
+             
+              </apex:pageblockTable>
+          </apex:pageblockSection>       
+      </apex:pageblock>
+     
+  </apex:form>
+</apex:page>

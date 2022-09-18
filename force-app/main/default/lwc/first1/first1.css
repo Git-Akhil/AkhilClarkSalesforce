@@ -1,0 +1,13 @@
+.back-icon {
+    --sds-c-icon-color-foreground-default: #006dcc;
+}
+.slds-radio{
+    display : inline-block !important;
+    margin-right: 0.5rem;
+}
+:checked {
+    color: rgb(0, 112, 210);
+}
+input[type="radio"]:checked {
+    color: rgb(0, 112, 210);
+  }
