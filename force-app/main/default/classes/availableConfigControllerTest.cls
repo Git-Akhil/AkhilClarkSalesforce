@@ -73,12 +73,4 @@ public class availableConfigControllerTest {
         Integer responseStatusCode = availableConfigController.backendCall(caseRec.Id,JSON.Serialize(configIds));
         Test.stopTest();
     }
-    @isTest
-    public static void backendCallTest2(){
-        Case caseRec = [SELECT Id FROM Case LIMIT 1];
-
-        Test.startTest();
-        Integer responseStatusCode = availableConfigController.backendCall(caseRec.Id,null);
-        Test.stopTest();
-    }
 }
